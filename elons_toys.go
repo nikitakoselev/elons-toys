@@ -9,14 +9,13 @@ func (c *Car) Drive() {
 	}
 }
 
-func (c Car) DisplayDistance() string {
+func (c *Car) DisplayDistance() string {
 	return fmt.Sprintf("Driven %d meters", c.distance)
 }
 
-func (c Car) DisplayBattery() string {
-	return fmt.Sprintf("Battery at %d", c.battery)
+func (c *Car) DisplayBattery() string {
+	return fmt.Sprintf("Battery at %d%%", c.battery)
 }
-
-func (c Car) CanFinish(distance int) bool {
-	return c.battery-c.batteryDrain > 0
+func (c *Car) CanFinish(distance int) bool {
+	return float32(c.battery) >= float32(distance)/float32(c.speed)*float32(c.batteryDrain)
 }
